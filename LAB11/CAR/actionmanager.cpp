@@ -40,40 +40,55 @@ void viewCar() {
 }
 
 void countBrands() {
-	std::string brandToCount;
-	int brandCounter = 0;
-
-	std::cout << "Ок. Какого бренда тебе посчитать машины? Почему все делать должен я..." << std::endl;
-	std::cin >> brandToCount;
-	
-	for (int i = 0; i < allCars.size(); i++) {
-		if (allCars[i].brand == brandToCount) {
-			brandCounter++;
-		}
+	if (allCars.size() == 0) {
+		std::cout << "Интересный ты человек. Как насчет того, что ты сначала откроешь список машин и попробуешь сам? поймешь с какой проблемой я столкнулся. там ничего нет." << std::endl;
 	}
+	else {
+		std::string brandToCount;
+		int brandCounter = 0;
 
-	std::cout << "В твоем списке присутствует ровно " << brandCounter << " машин с маркой " << brandToCount << ". Информативно." << std::endl;
+		std::cout << "Ок. Какого бренда тебе посчитать машины? Почему все делать должен я..." << std::endl;
+		std::cin >> brandToCount;
+	
+		for (int i = 0; i < allCars.size(); i++) {
+			if (allCars[i].brand == brandToCount) {
+				brandCounter++;
+			}
+		}
+
+		std::cout << "В твоем списке присутствует ровно " << brandCounter << " машин с маркой " << brandToCount << ". Информативно." << std::endl;
+	}
 }
 
 void countYearRange() {
-	int from, to;
+	if (allCars.size() == 0) {
+		std::cout << "Придержи сових коней. Лучше вместо диапазона сначала введи сам список." << std::endl;
+	}
+	else {
+		int from, to;
 	
-	std::cout << "С какого по какой год тебе считать?" << std::endl;
-	std::cin >> from >> to;
+		std::cout << "С какого по какой год тебе считать?" << std::endl;
+		std::cin >> from >> to;
 
-	for (int i = 0; i < allCars.size(); i++) {
-		if (allCars[i].year >= from && allCars[i].year <= to) {
-			std::cout << allCars[i].brand << " | " << allCars[i].model << " | " << allCars[i].year << std::endl;
-		}
-	}		
+		for (int i = 0; i < allCars.size(); i++) {
+ 			if (allCars[i].year >= from && allCars[i].year <= to) {
+				std::cout << allCars[i].brand << " | " << allCars[i].model << " | " << allCars[i].year << std::endl;
+			}
+		}		
+	}
 }
 
 void averageYear() {
-	int accumulator = 0;
-	float result;
-	for (int i = 0; i < allCars.size(); i++) {
-		accumulator = accumulator + allCars[i].year;
+	if (allCars.size() == 0) {
+		std::cout << "Вот это прикол. Как я должен тебе посчитать пустой список машин? на ноль поделить?" << std::endl;
 	}
-	result = (float)accumulator/(float)allCars.size();
-	std::cout << "Средний год всех машин в списке равен: " << result << "\nЗачем это вообще кому-то надо?" << std::endl;
+	else {
+		int accumulator = 0;
+		float result;
+		for (int i = 0; i < allCars.size(); i++) {
+			accumulator = accumulator + allCars[i].year;
+		}
+		result = (float)accumulator/(float)allCars.size();
+		std::cout << "Средний год всех машин в списке равен: " << result << "\nЗачем это вообще кому-то надо?" << std::endl;
+	}
 }
