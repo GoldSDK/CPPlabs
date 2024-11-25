@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <algorithm>
 #include <ctime>
@@ -38,5 +39,12 @@ void taskTwo(std::string STRING) {
 	std::cout << attempts << " attempts" << std::endl; 
 }
 void Five3(std::string STRING) {
-	
+	std::ifstream fle("FN1.txt");
+	std::string fileString;
+	while (std::getline(fle, fileString)) {
+		for (int i = 0; i < fileString.length(); i++) {
+			std::cout << fileString[i] << std::endl;
+		}
+	}
+	fle.close();
 }
