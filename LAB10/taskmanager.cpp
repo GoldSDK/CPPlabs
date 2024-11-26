@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <algorithm>
 #include <ctime>
 #include <random>
 void ExamBegin96(std::string STRING) {
@@ -26,17 +25,28 @@ void ExamBegin96(std::string STRING) {
 		std::cout << currentWord << std::endl;
 	}
 }
+void shuffleStr(std::string &STRING) {
+	char temp;
+	int randomIndex;
+	for (int i = 0; i < STRING.length(); i++) {
+		randomIndex = std::rand() % STRING.length();
+		temp = STRING[i];
+		STRING[i] = STRING[randomIndex];
+		STRING[randomIndex] = temp;
+	}
+}
 void taskTwo(std::string STRING) {
 	std::srand(time(0));
 	int attempts = 0;
 	std::string startingString = STRING;
-	std::random_shuffle(STRING.begin(), STRING.end());
+	shuffleStr(STRING);
+	std::cout << STRING << std::endl;
 	while (STRING != startingString) {
-		std::random_shuffle(STRING.begin(), STRING.end());
+		shuffleStr(STRING);
 		std::cout << STRING << std::endl;
 		attempts++;
 	}
-	std::cout << attempts << " attempts" << std::endl; 
+	std::cout << "и на это ушло " << attempts << " попыток..." << std::endl; 
 }
 void Five3(std::string STRING) {
 	std::ifstream fle("FN1.txt");
