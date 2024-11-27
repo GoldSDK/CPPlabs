@@ -77,7 +77,7 @@ void Five3(std::string STRING) {
 	}
 
 	std::cout << "Проверь файл FN2.txt чтобы увидеть ответы. Мог бы и калькулятором воспользоваться." << std::endl;
-	
+
 	// this fucking sucks :skull:
 
 	fle.close();

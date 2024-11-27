@@ -18,7 +18,7 @@ void addCar() {
 	std::cin >> userBrand >> userModel >> userYear;
 
 	userCar = {userBrand, userModel, userYear};
-	allCars.push_back(userCar);			
+	allCars.push_back(userCar);
 }
 
 void viewCar() {
@@ -34,7 +34,7 @@ void viewCar() {
 			std::cout << "Боже чел. Нет тут такой машины." << std::endl;
 			std::cin >> viewSelection;
 		}
-		
+
 		std::cout << allCars[viewSelection - 1].brand << " | " << allCars[viewSelection - 1].model << " | " << allCars[viewSelection - 1].year << std::endl;
 	}
 }
@@ -49,7 +49,7 @@ void countBrands() {
 
 		std::cout << "Ок. Какого бренда тебе посчитать машины? Почему все делать должен я..." << std::endl;
 		std::cin >> brandToCount;
-	
+
 		for (int i = 0; i < allCars.size(); i++) {
 			if (allCars[i].brand == brandToCount) {
 				brandCounter++;
@@ -66,7 +66,7 @@ void countYearRange() {
 	}
 	else {
 		int from, to;
-	
+
 		std::cout << "С какого по какой год тебе считать?" << std::endl;
 		std::cin >> from >> to;
 
@@ -74,7 +74,7 @@ void countYearRange() {
  			if (allCars[i].year >= from && allCars[i].year <= to) {
 				std::cout << allCars[i].brand << " | " << allCars[i].model << " | " << allCars[i].year << std::endl;
 			}
-		}		
+		}
 	}
 }
 
