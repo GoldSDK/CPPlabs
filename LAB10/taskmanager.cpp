@@ -72,7 +72,8 @@ void Five3(std::string STRING) {
 		else {
 			answer = parameter1 - parameter2;
 		}
-		ole << std::to_string(parameter1) << fileString[3] << std::to_string(parameter2) << "=" << std::to_string(answer) << "\n";
+		ole << std::to_string(parameter1) << fileString[3] 
+                    << std::to_string(parameter2) << "=" << std::to_string(answer) << "\n";
 		operand1 = ""; operand2 = "";
 	}
 
