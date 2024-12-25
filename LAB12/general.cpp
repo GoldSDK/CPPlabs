@@ -19,7 +19,7 @@ int main() {
 			Sort13();
 			break;
 		case 3:
-			ExamTaskC13();
+			ExamTaskC15();
 			break;
 	}
 	return 0;
