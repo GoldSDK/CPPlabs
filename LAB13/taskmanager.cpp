@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <string>
 void BackRec5() {
     	std::ifstream fin("files/input.txt");
     	int n, z;
@@ -54,8 +55,67 @@ void BackRec5() {
     	std::cout << "общий вес: " << totalWeight << "\nобщая ценность: " << totalValue << std::endl;
 }
 void HomeDyn2() {
-	std::cout << "2" << std::endl;
+	std::cout << "задания еще нету. возвращайся позже." << std::endl;
 }
+
+std::string add(const std::string& a, const std::string& b) {
+    std::string res;
+    int lo = 0;
+    int i = a.size() - 1;
+    int j = b.size() - 1;
+
+    while (i >= 0 || j >= 0 || lo) {
+        int sum = lo;
+        if (i >= 0) {
+		sum += a[i--] - '0';
+	}
+        if (j >= 0) {
+		sum += b[j--] - '0';
+	}
+        lo = sum / 10;
+        res.push_back((sum % 10) + '0');
+    }
+
+    std::reverse(res.begin(), res.end());
+    return res;
+}
+
+std::string multiply(const std::string& a, int b) {
+    std::string res;
+    int lo = 0;
+    for (int i = a.size() - 1; i >= 0; --i) {
+        int mres = (a[i] - '0') * b + lo;
+        lo = mres / 10;
+        res.push_back((mres % 10) + '0');
+    }
+    while (lo) {
+        res.push_back((lo % 10) + '0');
+        lo /= 10;
+    }
+    std::reverse(res.begin(), res.end());
+    return res;
+}
+
 void HomeDyn17() {
-	std::cout << "3" << std::endl;
+    	int k, n;
+
+	std::cout << "введи k и n или типа того." << std::endl;
+    	std::cin >> k >> n;
+
+    	std::string pr0 = std::to_string(k - 1);
+    	std::string pr1 = "0";
+    	std::string pr2 = "0";
+
+    	for (int i = 2; i <= n; i++) {
+        	std::string cur0 = multiply(add(add(pr0, pr1), pr2), k - 1);
+        	std::string cur1 = pr0;
+        	std::string cur2 = pr1;
+
+        	pr0 = cur0;
+        	pr1 = cur1;
+        	pr2 = cur2;
+    	}
+
+    	std::string res = add(add(pr0, pr1), pr2);
+    	std::cout << "короче, ответ " << res << std::endl;
 }
