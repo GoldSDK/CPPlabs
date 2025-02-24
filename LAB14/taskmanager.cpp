@@ -8,6 +8,8 @@ void Create() {
 
     std::cout << "сколько ты хочешь ввести чисел?" << std::endl;
     std::cin >> num_amount;
+
+    std::cout << "делай." << std::endl;
     for (int i = 0; i < num_amount; i++) {
         std::cin >> num;
         numbers.push_back(num);
@@ -17,6 +19,8 @@ void Create() {
     int num_count = numbers.size();
     outFile.write((char*)&num_count, sizeof(num_count));
     outFile.write((char*)numbers.data(), num_count * sizeof(int));
+
+    std::cout << "все твои " << num_amount << " чисел записаны в файл. почему все должен делать я..." << std::endl;
     outFile.close();
 }
 void File8() {
