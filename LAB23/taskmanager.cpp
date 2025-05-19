@@ -27,7 +27,7 @@ Node* insert(Node* root, int data) {
     return root;
 }
 
-void printTree(Node* root) {
+void PrintTree(Node* root) {
     if (root == nullptr)
         return;
     queue<Node*> q;
@@ -47,11 +47,11 @@ void printTree(Node* root) {
     }
 }
 
-void treeToDoublyList(Node* root, Node*& head, Node*& prev) {
+void TreeToList(Node* root, Node*& head, Node*& prev) {
     if (root == nullptr)
         return;
 
-    treeToDoublyList(root->left, head, prev);
+    TreeToList(root->left, head, prev);
 
     if (prev == nullptr) {
         head = root;
@@ -60,10 +60,10 @@ void treeToDoublyList(Node* root, Node*& head, Node*& prev) {
         root->left = prev;
     }
     prev = root;
-    treeToDoublyList(root->right, head, prev);
+    TreeToList(root->right, head, prev);
 }
 
-void printList(Node* head) {
+void PrintList(Node* head) {
     Node* curr = head;
     while (curr) {
         cout << curr->data << " ";
@@ -81,14 +81,14 @@ void TreeFun1() {
     }
 
     cout << "исходное дерево (извините что не сделал ветки я очень устал):" << endl;
-    printTree(root);
+    PrintTree(root);
 
     Node* head = nullptr;
     Node* prev = nullptr;
-    treeToDoublyList(root, head, prev);
+    TreeToList(root, head, prev);
 
     cout << "\n2связный список:" << endl;
-    printList(head);
+    PrintList(head);
 }
 
 class BinaryTree {
@@ -264,5 +264,5 @@ void TreeFun3() {
 }
 
 void TreeFun13() {
-
+    
 }
