@@ -1,38 +1,79 @@
 #include <iostream>
 #include <string>
+#include <locale>
 #include <limits>
-#include "taskmanager.h"
 using namespace std;
 
+wchar_t encryptChar(wchar_t c, short shift) {
+    if (c >= L'A' && c <= L'Z') {
+        return (c - L'A' + shift) % 26 + L'A';
+    }
+    else if (c >= L'А' && c <= L'Я') {
+        return (c - L'А' + shift) % 32 + L'А';
+    }
+    return c;
+}
+
+wchar_t decryptChar(wchar_t c, short shift) {
+    if (c >= L'A' && c <= L'Z') {
+        return (c - L'A' - shift + 26) % 26 + L'A';
+    }
+    else if (c >= L'А' && c <= L'Я') {
+        return (c - L'А' - shift + 32) % 32 + L'А';
+    }
+    return c;
+}
+
+wstring encrypt(const wstring &text, short shift) {
+    wstring encryptedText;
+    for (wchar_t c : text) {
+        encryptedText += encryptChar(c, shift);
+    }
+    return encryptedText;
+}
+
+wstring decrypt(const wstring &text, short shift) {
+    wstring decryptedText;
+    for (wchar_t c : text) {
+        decryptedText += decryptChar(c, shift);
+    }
+    return decryptedText;
+}
+
 int main() {
+    setlocale(LC_ALL, "");
+
+    wstring text;
+    short shift;
     short user_choice;
 
-    cout << "меня зовут юлий цезарь. тебе надо зашифровать или расшифровать?" << endl;
-    cout << "1. зашифровать\n2. расшифровать" << endl;
-    cin >> user_choice;
+    wcout << L"меня зовут юлий цезарь. тебе надо зашифровать (1) или расшифровать (2)?" << endl;
+    wcin >> user_choice;
+    
     while (user_choice < 1 || user_choice > 2) {
-        cout << "я так еще не умею. введи что тебе надо. нормально." << endl;
-        cin >> user_choice;
+        wcout << L"ниче не понял. говори по человечьи." << endl;
+        wcin >> user_choice;
     }
 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    wcin.ignore(numeric_limits<streamsize>::max(), L'\n');
 
-    string user_string;
-    short shift;
-    cout << "введи последовательность символов." << endl;
-    getline(cin, user_string);
+    wcout << L"введи строку. (последовательность символов)" << endl;
+    getline(wcin, text);
 
-    cout << "введи сдвиг" << endl;
-    cin >> shift;
+    wcout << L"введи сдвиг." << endl;
+    wcin >> shift;
 
-    switch (user_choice) {
+    wstring result;
+    switch(user_choice) {
         case 1:
-            cout << Cipher(user_string, shift) << endl;
+            result = encrypt(text, shift);
             break;
         case 2:
-            cout << Decipher(user_string, shift) << endl;
+            result = decrypt(text, shift);
             break;
     }
+
+    wcout << L"фух. ну тебя меня заставил попотеть. результат: " << result << endl;
 
     return 0;
 }
